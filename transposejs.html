@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>Transpose Matrix JS</title>
+	
+	<!-- css for matrix bracket -->
+	<style>
+		.matrix {
+	    position: relative;
+	}
+		.matrix:before, .matrix:after {
+	    content: "";
+	    position: absolute;
+	    top: 0;
+	    border: 1px solid #000;
+	    width: 6px;
+	    height: 100%;
+	}
+		.matrix:before {
+	    left: -6px;
+	    border-right: 0;
+	}
+		.matrix:after {
+	    right: -6px;
+	    border-left: 0;
+	}
+	</style>
+	<!-- javascript -->
+	<script>
+		window.onload = function() 
+		{
+
+			//3x3 matrix
+			var matrix = 	[["a","b","c"],
+							["d","e","f"],
+							["g","h","i"]];
+
+			//declare empty transpose matrix
+			var transmat = [];
+
+			var dispmatrix="";
+			var disptrans="";
+
+			//display original matrix
+			for(var i=0;i<3;i++)
+			{	
+				transmat[i] = []; //initialize array for transpose matrix
+				for(var j=0;j<3;j++)
+				{
+					transmat[j] = []; //initialize array for transpose matrix
+					dispmatrix += matrix[i][j]; 
+					dispmatrix += (j != 2) ? "&nbsp; &nbsp;" : ""; //prevent loop from add blank space after last element in row
+				}
+				dispmatrix += "<br>";			
+			}
+			 //display
+			document.getElementById("orimatrix").innerHTML = dispmatrix;
+
+			//proses transpose matrix
+			for(var i=0;i<3;i++)
+			{	
+				for(var j=0;j<3;j++)
+				{	
+					transmat[j][i] = matrix[i][j]; //insert original matrix into new array. insert ke index yang reverse.
+				}			
+			}
+
+			//display transpose matrix
+			for(var i=0;i<3;i++)
+			{
+				for(var j=0;j<3;j++)
+				{
+					disptrans += transmat[i][j]; 
+					disptrans += (j != 2) ? "&nbsp; &nbsp;" : ""; //prevent loop from add blank space after last element in row
+				}
+				disptrans += "<br>";			
+			}
+			 //display
+			document.getElementById("transposed").innerHTML = disptrans;
+
+		}
+	</script>
+</head>
+
+<body>
+
+<h2><u>Original Matrix (3x3)</u></h2>
+<table class="matrix">
+	<td>
+		<div id="orimatrix"></div>
+	</td>
+</table>
+
+<br><br>
+
+<h2><u>Transposed Matrix (3x3)</u></h2>
+<table class="matrix">
+	<td>
+		<div id="transposed"></div>
+	</td>
+</table>
+
+</body>
+</html>
